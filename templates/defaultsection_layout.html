@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container py-4">
+    <h1 class="section-title mb-5">{% block section_title %}Por favor Agregar un Título{% endblock %}</h1>
+    {% block section_content %}No existe contenido dentro de esta sección{% endblock %}
+  </div>
+{% endblock %}
