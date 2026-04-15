@@ -2,7 +2,7 @@ from django.db import models
 
 
 class FormTemplate(models.Model):
-    code = models.CharField(max_length=50, unique=True) #I-589
+    form_code = models.CharField(max_length=50, unique=True) #I-589
     name = models.CharField(max_length=255) #Asylum and Withoulding of Removal
     is_active = models.BooleanField(default=True)
 
