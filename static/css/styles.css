@@ -1,0 +1,17 @@
+:root {
+    --font-primary: 'Lexend', sans-serif;
+    --font-weight-regular: 300;
+    --font-weight-title: 500;
+}
+
+/* Body */
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+}
+
+/* Titles */
+.section-title {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-title);
+}
