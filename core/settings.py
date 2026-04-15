@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+    'crispy_bootstrap5',
     'accounts',
     'forms_engine',
     'cases',
@@ -121,7 +123,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Where Django will look for static files (optional but recommended)
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -131,3 +132,5 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
