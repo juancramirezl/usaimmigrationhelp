@@ -1,10 +1,10 @@
 from django.urls import reverse
 
-from ..base.create import BaseGenericCreateView
-from ..base.detail import BaseGenericDetailView
-from ..base.update import BaseGenericUpdateView
-from ..base.delete import BaseGenericDeleteView
-from ...models import FieldOption
+from .base.create import BaseGenericCreateView
+from .base.detail import BaseGenericDetailView
+from .base.update import BaseGenericUpdateView
+from .base.delete import BaseGenericDeleteView
+from ..models import FieldOption
 
 
 FORMSECTION_FIELDS = ["label", "key", "order", "value", "is_active"]

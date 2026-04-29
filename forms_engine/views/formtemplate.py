@@ -1,12 +1,12 @@
 from django.urls import reverse_lazy, reverse
 from django.views.generic.list import ListView
 
-from ..base.create import BaseGenericCreateView
-from ..base.detail import BaseGenericDetailView
-from ..base.update import BaseGenericUpdateView
-from ..base.delete import BaseGenericDeleteView
+from .base.create import BaseGenericCreateView
+from .base.detail import BaseGenericDetailView
+from .base.update import BaseGenericUpdateView
+from .base.delete import BaseGenericDeleteView
 
-from ...models import FormTemplate
+from ..models import FormTemplate
 
 
 FORMSECTION_FIELDS = "__all__"

@@ -1,10 +1,10 @@
 from django.urls import reverse
 
-from ..base.create import BaseGenericCreateView
-from ..base.detail import BaseGenericDetailView
-from ..base.update import BaseGenericUpdateView
-from ..base.delete import BaseGenericDeleteView
-from ...models import SectionQuestion
+from .base.create import BaseGenericCreateView
+from .base.detail import BaseGenericDetailView
+from .base.update import BaseGenericUpdateView
+from .base.delete import BaseGenericDeleteView
+from ..models import SectionQuestion
 
 
 FORMSECTION_FIELDS = ["label", "key", "order", "is_required", "is_active"]

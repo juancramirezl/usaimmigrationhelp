@@ -1,10 +1,10 @@
 from django.urls import reverse_lazy, reverse
 
-from ..base.create import BaseGenericCreateView
-from ..base.detail import BaseGenericDetailView
-from ..base.update import BaseGenericUpdateView
-from ..base.delete import BaseGenericDeleteView
-from ...models import QuestionGroup
+from .base.create import BaseGenericCreateView
+from .base.detail import BaseGenericDetailView
+from .base.update import BaseGenericUpdateView
+from .base.delete import BaseGenericDeleteView
+from ..models import QuestionGroup
     
 
 FORMSECTION_FIELDS = [

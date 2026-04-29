@@ -3,11 +3,11 @@ from django.urls import reverse_lazy, reverse
 import django_countries as djc
 from localflavor.us.us_states import USPS_CHOICES
 
-from ..base.create import BaseGenericCreateView
-from ..base.detail import BaseGenericDetailView
-from ..base.update import BaseGenericUpdateView
-from ..base.delete import BaseGenericDeleteView
-from ...models import GroupField
+from .base.create import BaseGenericCreateView
+from .base.detail import BaseGenericDetailView
+from .base.update import BaseGenericUpdateView
+from .base.delete import BaseGenericDeleteView
+from ..models import GroupField
     
 
 FORMSECTION_FIELDS = [
