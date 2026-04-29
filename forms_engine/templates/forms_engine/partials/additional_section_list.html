@@ -1,0 +1,72 @@
+<h2 class="fw-semibold text-start fs-5 mb-4">
+  {{ additional_section.title }}
+</h2>
+
+{% if additional_section.items %}
+  <div class="border rounded-4 bg-white overflow-hidden">
+    {% for item in additional_section.items %}
+      <div class="p-4 {% if not forloop.last %}border-bottom{% endif %}">
+        <div class="fw-semibold">{{ item.title }}</div>
+
+        {% if item.subtitle %}
+          <div class="text-muted small mb-2">{{ item.subtitle }}</div>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+  </div>
+
+  {# 🔽 PAGINATION 🔽 #}
+  {% if additional_section.page_obj and additional_section.page_obj.has_other_pages %}
+    <nav class="mt-4">
+      <ul class="pagination justify-content-center mb-0">
+
+        {# Previous #}
+        {% if additional_section.page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link"
+               href="?{{ additional_section.page_param }}={{ additional_section.page_obj.previous_page_number }}">
+              Anterior
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Anterior</span>
+          </li>
+        {% endif %}
+
+        {# Numbers #}
+        {% for num in additional_section.page_range %}
+          <li class="page-item {% if additional_section.page_obj.number == num %}active{% endif %}">
+            <a class="page-link"
+              href="?{{ additional_section.page_param }}={{ num }}">
+              {{ num }}
+            </a>
+          </li>
+        {% endfor %}
+
+        {# Next #}
+        {% if additional_section.page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link"
+               href="?{{ additional_section.page_param }}={{ additional_section.page_obj.next_page_number }}">
+              Siguiente
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Siguiente</span>
+          </li>
+        {% endif %}
+
+      </ul>
+    </nav>
+  {% endif %}
+
+{% else %}
+  <div class="border rounded-4 p-4 bg-white">
+    <div class="text-muted">
+      {{ additional_section.empty_message }}
+    </div>
+  </div>
+{% endif %}

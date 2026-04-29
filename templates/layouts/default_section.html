@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- NAVIGATION / BACK BUTTON -->
+  {% block breadcrumb %}
+    {% include "partials/back_button.html" %}
+  {% endblock %}
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      
+      <!-- SECTION WIDTH CONTROL -->
+      <div class="{% block section_width %}col-12 col-lg-11 col-xl-10{% endblock %}">
+
+        <!-- META DATA (small text above title) -->
+        {% block section_meta_wrapper %}
+          {% if section_meta %}
+            <div class="text-center mb-2 small text-uppercase text-muted">
+              {% block section_meta %}
+                {{ section_meta }}
+              {% endblock %}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        <!-- SECTION TITLE -->
+        {% block section_title_wrapper %}
+          <h1 class="section-title mb-3 text-center">
+            {% block section_title %}
+              {{ section_title|default:"Por favor agregar un título" }}
+            {% endblock %}
+          </h1>
+        {% endblock %}
+
+        <!-- SECTION DESCRIPTION -->
+        {% block section_description_wrapper %}
+          {% if section_description %}
+            <p class="text-muted text-center mb-4">
+              {% block section_description %}
+                {{ section_description }}
+              {% endblock %}
+            </p>
+          {% endif %}
+        {% endblock %}
+
+        <!-- MAIN CONTENT -->
+        {% block section_content %}
+          No existe contenido dentro de esta sección
+        {% endblock %}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
