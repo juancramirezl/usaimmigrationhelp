@@ -1,0 +1,80 @@
+<h2 class="fw-semibold text-start fs-5 mb-4">
+  {{ additional_section.title }}
+</h2>
+
+{% if additional_section.create_url %}
+  <div class="mb-4">
+    <a href="{{ additional_section.create_url }}" class="btn btn-outline-primary px-4 py-2 rounded-pill">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
+        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0"/>
+      </svg>
+      {{ additional_section.create_label }}
+    </a>
+  </div>
+{% endif %}
+
+{% if additional_section.rows %}
+  <div class="table-responsive rounded-4 bg-white overflow-hidden shadow-sm">
+
+    <table class="table table-borderless align-middle mb-0">
+
+      <!-- HEADER -->
+      <thead class="bg-light">
+        <tr class="text-muted small text-uppercase">
+          {% for header in additional_section.headers %}
+            <th class="fw-semibold py-3 px-4">
+              {{ header }}
+            </th>
+          {% endfor %}
+          <th class="text-end py-3 px-4">
+            Acción
+          </th>
+        </tr>
+      </thead>
+
+      <!-- BODY -->
+      <tbody>
+        {% for row in additional_section.rows %}
+          <tr class="py-3">
+
+            {% for cell in row.cells %}
+              <td class="py-5 px-4">
+
+                {% if cell.is_badge %}
+                  <span class="badge rounded-pill shadow px-3 py-2 {{ cell.badge_class }}">
+                    {{ cell.value }}
+                  </span>
+                {% else %}
+                  <div class="fw-semibold">
+                    {{ cell.value|default:"-" }}
+                  </div>
+                {% endif %}
+
+              </td>
+            {% endfor %}
+
+            <!-- ACTION -->
+            <td class="text-end py-4 px-4">
+              {% if row.detail_url %}
+                <a href="{{ row.detail_url }}" class="btn btn-sm btn-light border rounded-pill px-3">
+                  Ver
+                </a>
+              {% else %}
+                <span class="text-muted">-</span>
+              {% endif %}
+            </td>
+
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+
+  </div>
+{% else %}
+  <div class="border rounded-4 p-4 bg-white">
+    <div class="text-muted">
+      {{ additional_section.empty_message }}
+    </div>
+  </div>
+{% endif %}

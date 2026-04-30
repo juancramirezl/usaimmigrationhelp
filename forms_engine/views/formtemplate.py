@@ -62,10 +62,9 @@ class FormTemplateDetailView(BaseGenericDetailView):
         ]
     
     def get_additional_section(self):
-        return self.build_default_accordion_section(
+        return self.build_default_table_section(
             title="Secciones de la Plantilla",
             objects=self.object.sections.all(),
-            accordion_id="sectionsAccordion",
             detail_url_name="formsection_detail",
             create_url_name="formsection_create",
             create_url_kwargs={"formtemplate_id": self.object.pk},

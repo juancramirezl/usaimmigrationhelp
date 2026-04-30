@@ -102,10 +102,9 @@ class GroupFieldDetailView(BaseGenericDetailView):
         return None
 
     def get_database_options_section(self):
-        return self.build_default_accordion_section(
+        return self.build_default_table_section(
             title="Opciones en Base de Datos",
             objects=self.object.options.all(),
-            accordion_id="groupFieldOptionsAccordion",
             detail_url_name=None,
             create_url_name="fileoption_create",
             create_url_kwargs={"groupfield_id": self.object.pk},

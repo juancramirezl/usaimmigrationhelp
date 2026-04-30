@@ -1,12 +1,14 @@
 from django.views.generic import DetailView
 
 from .mixins import (
+    DefaultTableSectionMixin,
     DefaultAccordionSectionMixin,
     DefaultListSectionMixin,
 )
 
 
 class BaseGenericDetailView(
+    DefaultTableSectionMixin,
     DefaultAccordionSectionMixin,
     DefaultListSectionMixin,
     DetailView,

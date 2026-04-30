@@ -79,10 +79,9 @@ class QuestionGroupDetailView(BaseGenericDetailView):
         return fields
     
     def get_additional_section(self):
-        return self.build_default_accordion_section(
+        return self.build_default_table_section(
             title="Campos del Grupo",
             objects=self.object.fields.all(),
-            accordion_id="groupFieldsAccordion",
             detail_url_name="groupfield_detail",
             create_url_name="groupfield_create",
             create_url_kwargs={"questiongroup_id": self.object.pk},

@@ -48,6 +48,34 @@ class StyleBuilderMixin:
         return badge_item
     
 
+class TableBuilderMixin:
+    def build_table_section(
+        self,
+        title,
+        headers,
+        rows,
+        create_url=None,
+        create_label=None,
+        empty_message="No hay elementos.",
+    ):
+        return {
+            "type": "table",
+            "title": title,
+            "headers": headers,
+            "rows": rows,
+            "create_url": create_url,
+            "create_label": create_label,
+            "empty_message": empty_message,
+        }
+
+    def build_table_row(self, cells, detail_url=None, detail_label="Ver"):
+        return {
+            "cells": cells,
+            "detail_url": detail_url,
+            "detail_label": detail_label,
+        }
+
+
 class AccordionBuilderMixin:
     def build_accordion_item(
         self,
@@ -123,6 +151,74 @@ class SectionPaginationMixin:
         end = min(current + window, total)
 
         return range(start, end + 1)
+    
+
+class DefaultTableSectionMixin(
+    TableBuilderMixin,
+    StyleBuilderMixin,
+):
+    def build_default_table_row(self, obj, detail_url_name=None):
+        cells = []
+
+        if hasattr(obj, "order"):
+            cells.append(self.build_text_field("Orden", obj.order))
+
+        if hasattr(obj, "label"):
+            cells.append(self.build_text_field("Nombre", obj.label))
+
+        if hasattr(obj, "key"):
+            cells.append(self.build_text_field("Key", obj.key))
+
+        if hasattr(obj, "is_active"):
+            cells.append(
+                self.build_badge_field(
+                    "Estado",
+                    "Activo" if obj.is_active else "Inactivo",
+                    style="success" if obj.is_active else "danger",
+                )
+            )
+
+        detail_url = None
+
+        if detail_url_name:
+            detail_url = reverse(detail_url_name, kwargs={"pk": obj.pk})
+
+        return self.build_table_row(
+            cells=cells,
+            detail_url=detail_url,
+        )
+
+    def build_default_table_section(
+        self,
+        title,
+        objects,
+        detail_url_name=None,
+        create_url_name=None,
+        create_url_kwargs=None,
+        create_label=None,
+        empty_message="No hay elementos.",
+    ):
+        rows = [
+            self.build_default_table_row(obj, detail_url_name)
+            for obj in objects
+        ]
+
+        create_url = None
+
+        if create_url_name:
+            create_url = reverse(
+                create_url_name,
+                kwargs=create_url_kwargs or {},
+            )
+
+        return self.build_table_section(
+            title=title,
+            headers=["Orden", "Nombre", "Key", "Estado"],
+            rows=rows,
+            create_url=create_url,
+            create_label=create_label,
+            empty_message=empty_message,
+        )
     
 
 class DefaultAccordionSectionMixin(

@@ -60,10 +60,9 @@ class SectionQuestionDetailView(BaseGenericDetailView):
         }
     
     def get_additional_section(self):
-        return self.build_default_accordion_section(
+        return self.build_default_table_section(
             title="Grupos de Preguntas",
             objects=self.object.groups.all(),
-            accordion_id="groupsAccordion",
             detail_url_name="questiongroup_detail",
             create_url_name="questiongroup_create",
             create_url_kwargs={"sectionquestion_id": self.object.pk},

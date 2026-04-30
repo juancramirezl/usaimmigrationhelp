@@ -145,7 +145,10 @@
         {% include "forms_engine/partials/additional_section_accordion.html" %}
       {% elif additional_section.type == "list" %}
         {% include "forms_engine/partials/additional_section_list.html" %}
+      {% elif additional_section.type == "table" %}
+        {% include "forms_engine/partials/additional_section_table.html" %}
       {% endif %}
     </div>
   {% endif %}
+
 {% endblock %}
