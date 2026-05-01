@@ -14,38 +14,36 @@
 {% endif %}
 
 {% if additional_section.rows %}
-  <div class="table-responsive rounded-4 bg-white overflow-hidden shadow-sm">
+  <div class="table-responsive rounded-4 bg-white overflow-auto shadow-sm">
 
-    <table class="table table-borderless align-middle mb-0">
+    <table class="table table-borderless align-middle mb-0 w-100">
 
-      <!-- HEADER -->
       <thead class="bg-light">
         <tr class="text-muted small text-uppercase">
           {% for header in additional_section.headers %}
-            <th class="fw-semibold py-3 px-4">
+            <th class="fw-semibold py-3 px-3 text-nowrap">
               {{ header }}
             </th>
           {% endfor %}
-          <th class="text-end py-3 px-4">
+          <th class="text-end py-3 px-3 text-nowrap">
             Acción
           </th>
         </tr>
       </thead>
 
-      <!-- BODY -->
       <tbody>
         {% for row in additional_section.rows %}
-          <tr class="py-3">
+          <tr>
 
             {% for cell in row.cells %}
-              <td class="py-5 px-4">
+              <td class="py-3 px-3 text-break">
 
                 {% if cell.is_badge %}
                   <span class="badge rounded-pill shadow px-3 py-2 {{ cell.badge_class }}">
                     {{ cell.value }}
                   </span>
                 {% else %}
-                  <div class="fw-semibold">
+                  <div class="fw-semibold text-wrap">
                     {{ cell.value|default:"-" }}
                   </div>
                 {% endif %}
@@ -53,12 +51,36 @@
               </td>
             {% endfor %}
 
-            <!-- ACTION -->
-            <td class="text-end py-4 px-4">
-              {% if row.detail_url %}
-                <a href="{{ row.detail_url }}" class="btn btn-sm btn-light border rounded-pill px-3">
-                  Ver
-                </a>
+            <td class="text-end py-3 px-3 text-nowrap">
+              {% if row.detail_url or row.edit_url %}
+                <div class="dropdown">
+                  <button
+                    class="btn btn-sm btn-light border rounded-pill px-3 dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Acciones
+                  </button>
+
+                  <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3">
+                    {% if row.detail_url %}
+                      <li>
+                        <a class="dropdown-item" href="{{ row.detail_url }}">
+                          Ver
+                        </a>
+                      </li>
+                    {% endif %}
+
+                    {% if row.edit_url %}
+                      <li>
+                        <a class="dropdown-item" href="{{ row.edit_url }}">
+                          Editar
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                </div>
               {% else %}
                 <span class="text-muted">-</span>
               {% endif %}

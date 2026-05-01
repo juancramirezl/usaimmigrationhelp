@@ -68,11 +68,20 @@ class TableBuilderMixin:
             "empty_message": empty_message,
         }
 
-    def build_table_row(self, cells, detail_url=None, detail_label="Ver"):
+    def build_table_row(
+        self,
+        cells,
+        detail_url=None,
+        detail_label="Ver",
+        edit_url=None,
+        edit_label="Editar",
+    ):
         return {
             "cells": cells,
             "detail_url": detail_url,
             "detail_label": detail_label,
+            "edit_url": edit_url,
+            "edit_label": edit_label,
         }
 
 
@@ -157,7 +166,12 @@ class DefaultTableSectionMixin(
     TableBuilderMixin,
     StyleBuilderMixin,
 ):
-    def build_default_table_row(self, obj, detail_url_name=None):
+    def build_default_table_row(
+        self,
+        obj,
+        detail_url_name=None,
+        edit_url_name=None,
+    ):
         cells = []
 
         if hasattr(obj, "order"):
@@ -165,9 +179,6 @@ class DefaultTableSectionMixin(
 
         if hasattr(obj, "label"):
             cells.append(self.build_text_field("Nombre", obj.label))
-
-        if hasattr(obj, "key"):
-            cells.append(self.build_text_field("Key", obj.key))
 
         if hasattr(obj, "is_active"):
             cells.append(
@@ -179,13 +190,18 @@ class DefaultTableSectionMixin(
             )
 
         detail_url = None
+        edit_url = None
 
         if detail_url_name:
             detail_url = reverse(detail_url_name, kwargs={"pk": obj.pk})
 
+        if edit_url_name:
+            edit_url = reverse(edit_url_name, kwargs={"pk": obj.pk})
+
         return self.build_table_row(
             cells=cells,
             detail_url=detail_url,
+            edit_url=edit_url,
         )
 
     def build_default_table_section(
@@ -193,13 +209,18 @@ class DefaultTableSectionMixin(
         title,
         objects,
         detail_url_name=None,
+        edit_url_name=None,
         create_url_name=None,
         create_url_kwargs=None,
         create_label=None,
         empty_message="No hay elementos.",
     ):
         rows = [
-            self.build_default_table_row(obj, detail_url_name)
+            self.build_default_table_row(
+                obj,
+                detail_url_name=detail_url_name,
+                edit_url_name=edit_url_name,
+            )
             for obj in objects
         ]
 
@@ -213,13 +234,12 @@ class DefaultTableSectionMixin(
 
         return self.build_table_section(
             title=title,
-            headers=["Orden", "Nombre", "Key", "Estado"],
+            headers=["Orden", "Nombre", "Estado"],
             rows=rows,
             create_url=create_url,
             create_label=create_label,
             empty_message=empty_message,
         )
-    
 
 class DefaultAccordionSectionMixin(
     AccordionBuilderMixin,
