@@ -67,7 +67,7 @@
                     {% if row.detail_url %}
                       <li>
                         <a class="dropdown-item" href="{{ row.detail_url }}">
-                          Ver
+                          {{ row.detail_label }}
                         </a>
                       </li>
                     {% endif %}
@@ -75,7 +75,7 @@
                     {% if row.edit_url %}
                       <li>
                         <a class="dropdown-item" href="{{ row.edit_url }}">
-                          Editar
+                          {{ row.edit_label }}
                         </a>
                       </li>
                     {% endif %}
