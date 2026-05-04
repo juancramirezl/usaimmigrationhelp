@@ -1,16 +1,10 @@
 from django.views.generic import DetailView
 
-from .mixins import (
-    DefaultTableSectionMixin,
-    DefaultAccordionSectionMixin,
-    DefaultListSectionMixin,
-)
+from .ui import DefaultTableSectionMixin
 
 
 class BaseGenericDetailView(
     DefaultTableSectionMixin,
-    DefaultAccordionSectionMixin,
-    DefaultListSectionMixin,
     DetailView,
 ):
     template_name = "forms_engine/generic/detail.html"
@@ -61,7 +55,7 @@ class BaseGenericDetailView(
 
         if hasattr(self.object, "is_active"):
             badges.append(
-                self.build_badge(
+                self.build_badge_field(
                     label="Estado",
                     value="Activo" if self.object.is_active else "Inactivo",
                     style="success" if self.object.is_active else "danger",
@@ -70,7 +64,7 @@ class BaseGenericDetailView(
 
         if hasattr(self.object, "is_required"):
             badges.append(
-                self.build_badge(
+                self.build_badge_field(
                     label="Requerido",
                     value="Requerido" if self.object.is_required else "No requerido",
                     style="primary" if self.object.is_required else "secondary",
@@ -79,7 +73,7 @@ class BaseGenericDetailView(
 
         if hasattr(self.object, "is_repeatable"):
             badges.append(
-                self.build_badge(
+                self.build_badge_field(
                     label="Repetibilidad",
                     value="Repetible" if self.object.is_repeatable else "No repetible",
                     style="warning",

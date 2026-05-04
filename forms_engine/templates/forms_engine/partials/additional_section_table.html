@@ -38,7 +38,7 @@
             {% for cell in row.cells %}
               <td class="py-3 px-3 text-break">
 
-                {% if cell.is_badge %}
+                {% if cell.type == "badge" %}
                   <span class="badge rounded-pill shadow px-3 py-2 {{ cell.badge_class }}">
                     {{ cell.value }}
                   </span>

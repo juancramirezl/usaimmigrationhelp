@@ -1,6 +1,6 @@
 from django.views.generic import DeleteView
 
-from .detail.mixins import StyleBuilderMixin
+from .ui import StyleBuilderMixin
 
 
 class BaseGenericDeleteView(StyleBuilderMixin, DeleteView):
