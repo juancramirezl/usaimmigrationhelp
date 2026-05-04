@@ -13,7 +13,7 @@ FORMSECTION_FIELDS = "__all__"
 
 
 class FormTemplateListView(ListView):
-    template_name = "forms_engine/formtemplate/list.html"
+    template_name = "forms_engine/generic/list.html"
     model = FormTemplate
     paginate_by = 15
 
