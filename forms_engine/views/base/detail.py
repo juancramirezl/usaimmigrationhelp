@@ -1,10 +1,11 @@
 from django.views.generic import DetailView
 
-from .ui import DefaultTableSectionMixin
+from .ui import DefaultTableSectionMixin, DefaultListSectionMixin
 
 
 class BaseGenericDetailView(
     DefaultTableSectionMixin,
+    DefaultListSectionMixin,
     DetailView,
 ):
     template_name = "forms_engine/generic/detail.html"
