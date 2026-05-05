@@ -20,8 +20,8 @@ class TableRow:
     cells: list
     detail_url: str | None = None
     detail_label: str = "Ver"
-    edit_url: str | None = None
-    edit_label: str = "Editar"
+    update_url: str | None = None
+    update_label: str = "Editar"
     
 
 class DefaultTableSectionMixin(UIBuilderMixin):
@@ -35,7 +35,7 @@ class DefaultTableSectionMixin(UIBuilderMixin):
         self,
         obj,
         detail_url_name=None,
-        edit_url_name=None,
+        update_url_name=None,
     ):
         cells = []
 
@@ -55,12 +55,12 @@ class DefaultTableSectionMixin(UIBuilderMixin):
             )
 
         detail_url = self.build_object_url(detail_url_name, obj)
-        edit_url = self.build_object_url(edit_url_name, obj)
+        update_url = self.build_object_url(update_url_name, obj)
 
         return TableRow(
             cells=cells,
             detail_url=detail_url,
-            edit_url=edit_url,
+            update_url=update_url,
         )
 
     def build_default_table_section(
@@ -68,7 +68,7 @@ class DefaultTableSectionMixin(UIBuilderMixin):
         title,
         objects,
         detail_url_name=None,
-        edit_url_name=None,
+        update_url_name=None,
         create_url_name=None,
         create_url_kwargs=None,
         create_label=None,
@@ -78,7 +78,7 @@ class DefaultTableSectionMixin(UIBuilderMixin):
             self.build_default_table_row(
                 obj,
                 detail_url_name=detail_url_name,
-                edit_url_name=edit_url_name,
+                update_url_name=update_url_name,
             )
             for obj in objects
         ]
