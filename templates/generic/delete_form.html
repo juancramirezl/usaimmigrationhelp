@@ -25,11 +25,16 @@
         {% for field in summary_fields %}
           <div class="col-md-4 mb-3">
             <div class="text-muted fw-semibold">{{ field.label }}</div>
+
             <div>
-              {% if field.is_badge %}
-                <span class="badge {{ field.badge_class }}">{{ field.value }}</span>
+              {% if field.type == "badge" %}
+                <span class="badge {{ field.badge_class }}">
+                  {{ field.value|default:"-" }}
+                </span>
               {% else %}
-                <span class="fw-semibold">{{ field.value }}</span>
+                <span class="fw-semibold">
+                  {{ field.value|default:"-" }}
+                </span>
               {% endif %}
             </div>
           </div>
