@@ -1,9 +1,9 @@
 from django.views.generic import DeleteView
 
-from .ui import StyleBuilderMixin
+from .ui import UIBuilderMixin
 
 
-class BaseGenericDeleteView(StyleBuilderMixin, DeleteView):
+class BaseGenericDeleteView(UIBuilderMixin, DeleteView):
     template_name = "generic/delete_form.html"
     page_title = "Eliminar"
     confirm_label = "Sí, Eliminar"

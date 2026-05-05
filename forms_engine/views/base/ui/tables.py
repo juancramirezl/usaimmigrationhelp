@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from django.urls import reverse
 
-from .styles import StyleBuilderMixin
+from .styles import UIBuilderMixin
 
 
 @dataclass
@@ -24,7 +24,7 @@ class TableRow:
     edit_label: str = "Editar"
     
 
-class DefaultTableSectionMixin(StyleBuilderMixin):
+class DefaultTableSectionMixin(UIBuilderMixin):
     def build_object_url(self, url_name, obj):
         if not url_name:
             return None

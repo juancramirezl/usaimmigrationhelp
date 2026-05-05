@@ -16,7 +16,7 @@ class BadgeField:
     type: str = "badge"
 
 
-class StyleBuilderMixin:
+class UIBuilderMixin:
     DEFAULT_BADGE_STYLE = "secondary"
 
     BADGE_STYLES = {
