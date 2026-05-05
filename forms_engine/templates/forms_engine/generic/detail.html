@@ -110,7 +110,9 @@
     <hr>
     <div class="my-5">
       {% if additional_section.type == "table" %}
-        {% include "forms_engine/sections/additional_section_table.html" %}
+        {% include "forms_engine/sections/table.html" %}
+      {% elif additional_section.type == "list" %}
+        {% include "forms_engine/sections/list.html" %}
       {% endif %}
     </div>
   {% endif %}
