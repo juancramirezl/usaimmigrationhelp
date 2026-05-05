@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from django.urls import reverse
-from django.core.paginator import Paginator
 
 from .styles import StyleBuilderMixin
 
@@ -23,23 +22,6 @@ class TableRow:
     detail_label: str = "Ver"
     edit_url: str | None = None
     edit_label: str = "Editar"
-
-
-class SectionPaginationMixin:
-    def paginate_items(self, items, page_param="page", per_page=8):
-        paginator = Paginator(items, per_page)
-        page_number = self.request.GET.get(page_param)
-
-        return paginator.get_page(page_number)
-
-    def get_sliding_page_range(self, page_obj, window=2):
-        current = page_obj.number
-        total = page_obj.paginator.num_pages
-
-        start = max(current - window, 1)
-        end = min(current + window, total)
-
-        return range(start, end + 1)
     
 
 class DefaultTableSectionMixin(StyleBuilderMixin):
