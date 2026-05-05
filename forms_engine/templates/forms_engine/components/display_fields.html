@@ -1,0 +1,40 @@
+<div class="my-5">
+      
+  <div class="row align-items-center text-center text-md-start mb-4">
+
+    <!-- Title -->
+    <div class="col-12 col-md-4">
+      <h2 class="fw-semibold fs-4 mb-2 mb-md-0">
+        Información General
+      </h2>
+    </div>
+
+    <!-- Description -->
+    <div class="col-12 col-md-8">
+      <p class="text mb-0 mx-auto mx-md-0" style="max-width: 500px;">
+        Contiene los datos básicos de identificación y configuración del objeto, necesarios para su organización y referencia dentro del sistema.
+      </p>
+    </div>
+
+  </div>
+
+  {% for field in display_fields %}
+
+    {% if forloop.first or forloop.counter0|divisibleby:3 %}
+      <div class="border rounded-4 p-4 bg-white mb-4">
+        <div class="row">
+    {% endif %}
+
+          <div class="col-md-4 mb-3">
+            <div class="text-muted fw-semibold">{{ field.label }}</div>
+            <div class="fw-semibold">{{ field.value|default:"-" }}</div>
+          </div>
+
+    {% if forloop.counter|divisibleby:3 or forloop.last %}
+        </div>
+      </div>
+    {% endif %}
+
+  {% endfor %}
+
+</div>
