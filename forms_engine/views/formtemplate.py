@@ -56,6 +56,7 @@ class FormTemplateDetailView(BaseGenericDetailView):
             title="Secciones de la Plantilla",
             objects=self.object.sections.all(),
             detail_url_name="formsection_detail",
+            update_url_name="formsection_update",
             create_url_name="formsection_create",
             create_url_kwargs={"formtemplate_id": self.object.pk},
             create_label="Agregar Sección",

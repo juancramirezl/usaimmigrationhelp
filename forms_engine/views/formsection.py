@@ -54,6 +54,7 @@ class FormSectionDetailView(BaseGenericDetailView):
             title="Preguntas de la Sección",
             objects=self.object.questions.all(),
             detail_url_name="sectionquestion_detail",
+            update_url_name="sectionquestion_update",
             create_url_name="sectionquestion_create",
             create_url_kwargs={"formsection_id": self.object.pk},
             create_label="Nueva Pregunta",

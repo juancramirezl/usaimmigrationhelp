@@ -54,6 +54,7 @@ class SectionQuestionDetailView(BaseGenericDetailView):
             title="Grupos de Preguntas",
             objects=self.object.groups.all(),
             detail_url_name="questiongroup_detail",
+            update_url_name="questiongroup_update",
             create_url_name="questiongroup_create",
             create_url_kwargs={"sectionquestion_id": self.object.pk},
             create_label="Nuevo Grupo de Preguntas",

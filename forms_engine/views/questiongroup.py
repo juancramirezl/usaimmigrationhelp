@@ -73,6 +73,7 @@ class QuestionGroupDetailView(BaseGenericDetailView):
             title="Campos del Grupo",
             objects=self.object.fields.all(),
             detail_url_name="groupfield_detail",
+            update_url_name="groupfield_update",
             create_url_name="groupfield_create",
             create_url_kwargs={"questiongroup_id": self.object.pk},
             create_label="Nuevo Campo",

@@ -96,6 +96,7 @@ class GroupFieldDetailView(BaseGenericDetailView):
             title="Opciones en Base de Datos",
             objects=self.object.options.all(),
             detail_url_name=None,
+            update_url_name=None,
             create_url_name="fileoption_create",
             create_url_kwargs={"groupfield_id": self.object.pk},
             create_label="Nueva Opción",
