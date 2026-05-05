@@ -57,17 +57,11 @@ class QuestionGroupDetailView(BaseGenericDetailView):
     def get_section_description(self):
         return f"Pregunta: {self.object.question}"
 
-    def get_edit_button(self):
-        return {
-            "label": "Grupo",
-            "url": reverse("questiongroup_update", kwargs={"pk": self.object.pk}),
-        }
+    def get_update_url(self):
+        return reverse("questiongroup_update", kwargs={"pk": self.object.pk})
 
-    def get_delete_button(self):
-        return {
-            "label": "Grupo",
-            "url": reverse("questiongroup_delete", kwargs={"pk": self.object.pk}),
-        }
+    def get_delete_url(self):
+        return reverse("questiongroup_delete", kwargs={"pk": self.object.pk})
 
     def get_display_fields(self):
         fields = super().get_display_fields()

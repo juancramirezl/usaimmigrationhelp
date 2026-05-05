@@ -32,11 +32,33 @@ class BaseGenericDetailView(
     def get_section_description(self):
         return None
 
-    def get_edit_button(self):
+    def get_update_url(self):
         return None
 
-    def get_delete_button(self):
+    def get_delete_url(self):
         return None
+
+    def get_action_buttons(self):
+        buttons = []
+
+        update_url = self.get_update_url()
+        delete_url = self.get_delete_url()
+
+        if update_url:
+            buttons.append(
+                self.build_edit_button(
+                    url=update_url,
+                )
+            )
+
+        if delete_url:
+            buttons.append(
+                self.build_delete_button(
+                    url=delete_url,
+                )
+            )
+
+        return buttons
 
     def get_display_fields(self):
         fields = []
@@ -94,8 +116,7 @@ class BaseGenericDetailView(
             "section_meta": self.get_section_meta(),
             "section_title": self.get_section_title(),
             "section_description": self.get_section_description(),
-            "edit_button": self.get_edit_button(),
-            "delete_button": self.get_delete_button(),
+            "action_buttons": self.get_action_buttons(),
             "display_fields": self.get_display_fields(),
             "status_badges": self.get_status_badges(),
             "additional_section": self.get_additional_section(),

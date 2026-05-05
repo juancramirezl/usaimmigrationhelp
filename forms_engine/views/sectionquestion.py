@@ -47,17 +47,11 @@ class SectionQuestionDetailView(BaseGenericDetailView):
     def get_section_description(self):
         return f"Sección: {self.object.section}"
 
-    def get_edit_button(self):
-        return {
-            "label": "Pregunta",
-            "url": reverse("sectionquestion_update", kwargs={"pk": self.object.pk}),
-        }
+    def get_update_url(self):
+        return reverse("sectionquestion_update", kwargs={"pk": self.object.pk})
 
-    def get_delete_button(self):
-        return {
-            "label": "Pregunta",
-            "url": reverse("sectionquestion_delete", kwargs={"pk": self.object.pk}),
-        }
+    def get_delete_url(self):
+        return reverse("sectionquestion_delete", kwargs={"pk": self.object.pk})
     
     def get_additional_section(self):
         return self.build_default_table_section(

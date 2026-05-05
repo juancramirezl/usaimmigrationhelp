@@ -2,7 +2,9 @@
 
 {% block section_content %}
 
-  {% include "forms_engine/components/action_buttons.html" %}
+  {% if action_buttons %}
+    {% include "forms_engine/components/action_buttons.html" %}
+  {% endif %}
 
   {% if status_badges %}
     <hr>
