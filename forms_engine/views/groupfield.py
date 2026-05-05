@@ -44,6 +44,8 @@ class GroupFieldCreateView(BaseGenericCreateView):
 class GroupFieldDetailView(BaseGenericDetailView):
     model = GroupField
     section_meta = "Campo de Grupo de Pregunta"
+    currentObj_update_url_name = "groupfield_update"
+    currentObj_delete_url_name = "groupfield_delete"
 
     def get_queryset(self):
         return super().get_queryset().prefetch_related("options")
@@ -57,12 +59,6 @@ class GroupFieldDetailView(BaseGenericDetailView):
     
     def get_section_description(self):
         return f"Grupo de Pregunta: {self.object.group}"
-
-    def get_update_url(self):
-        return reverse("groupfield_update", kwargs={"pk": self.object.pk})
-
-    def get_delete_url(self):
-        return reverse("groupfield_delete", kwargs={"pk": self.object.pk})
 
     def get_display_fields(self):
         fields = super().get_display_fields()

@@ -33,6 +33,8 @@ class FormSectionCreateView(BaseGenericCreateView):
 class FormSectionDetailView(BaseGenericDetailView):
     model = FormSection
     section_meta = "Sección de Forma"
+    currentObj_update_url_name = "formsection_update"
+    currentObj_delete_url_name = "formsection_delete"
 
     def get_queryset(self):
         return super().get_queryset().prefetch_related("questions")
@@ -47,12 +49,6 @@ class FormSectionDetailView(BaseGenericDetailView):
     def get_section_description(self):
         return f"Forma: {self.object.form_template}"
 
-    def get_update_url(self):
-        return reverse("formsection_update", kwargs={"pk": self.object.pk})
-
-    def get_delete_url(self):
-        return reverse("formsection_delete", kwargs={"pk": self.object.pk})
-    
     def get_additional_section(self):
         return self.build_default_table_section(
             title="Preguntas de la Sección",

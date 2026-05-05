@@ -43,6 +43,8 @@ class QuestionGroupCreateView(BaseGenericCreateView):
 class QuestionGroupDetailView(BaseGenericDetailView):
     model = QuestionGroup
     section_meta = "Grupo de Preguntas"
+    currentObj_update_url_name = "questiongroup_update"
+    currentObj_delete_url_name = "questiongroup_delete"
 
     def get_queryset(self):
         return super().get_queryset().prefetch_related("fields")
@@ -56,12 +58,6 @@ class QuestionGroupDetailView(BaseGenericDetailView):
     
     def get_section_description(self):
         return f"Pregunta: {self.object.question}"
-
-    def get_update_url(self):
-        return reverse("questiongroup_update", kwargs={"pk": self.object.pk})
-
-    def get_delete_url(self):
-        return reverse("questiongroup_delete", kwargs={"pk": self.object.pk})
 
     def get_display_fields(self):
         fields = super().get_display_fields()

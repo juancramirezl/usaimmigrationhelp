@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.views.generic import DetailView
 
 from .ui import DefaultTableSectionMixin, DefaultListSectionMixin
@@ -10,6 +11,8 @@ class BaseGenericDetailView(
 ):
     template_name = "forms_engine/generic/detail.html"
     section_meta = "Meta Descripción"
+    currentObj_update_url_name = None
+    currentObj_delete_url_name = None
 
     display_field_map = (
         ("Orden", "order"),
@@ -31,12 +34,34 @@ class BaseGenericDetailView(
 
     def get_section_description(self):
         return None
+    
+    def get_currentObj_update_url_name(self):
+        return self.currentObj_update_url_name
+
+    def get_currentObj_delete_url_name(self):
+        return self.currentObj_delete_url_name
 
     def get_update_url(self):
-        return None
+        url_name = self.get_currentObj_update_url_name()
+
+        if not url_name:
+            return None
+
+        return reverse(
+            url_name,
+            kwargs={"pk": self.object.pk},
+        )
 
     def get_delete_url(self):
-        return None
+        url_name = self.get_currentObj_delete_url_name()
+
+        if not url_name:
+            return None
+
+        return reverse(
+            url_name,
+            kwargs={"pk": self.object.pk},
+        )
 
     def get_action_buttons(self):
         buttons = []

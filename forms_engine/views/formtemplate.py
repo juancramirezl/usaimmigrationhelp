@@ -33,6 +33,8 @@ class FormTemplateCreateView(BaseGenericCreateView):
 class FormTemplateDetailView(BaseGenericDetailView):
     model = FormTemplate
     section_meta = "Plantilla de Forma"
+    currentObj_update_url_name = "formtemplate_update"
+    currentObj_delete_url_name = "formtemplate_delete"
 
     def get_queryset(self):
         return super().get_queryset().prefetch_related("sections")
@@ -43,12 +45,6 @@ class FormTemplateDetailView(BaseGenericDetailView):
     
     def get_section_description(self):
         return None
-
-    def get_update_url(self):
-        return reverse("formtemplate_update", kwargs={"pk": self.object.pk})
-
-    def get_delete_url(self):
-        return reverse("formtemplate_delete", kwargs={"pk": self.object.pk})
 
     def get_display_fields(self):
         return [
