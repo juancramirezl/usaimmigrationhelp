@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
       
       <!-- SECTION WIDTH CONTROL -->
-      <div class="{% block section_width %}col-12 col-lg-11 col-xl-10{% endblock %}">
+      <div class="{{ section_width|default:'col-12 col-lg-11 col-xl-10' }}">
 
         <!-- META DATA (small text above title) -->
         {% block section_meta_wrapper %}
