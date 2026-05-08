@@ -8,7 +8,7 @@
       {{ warning_title|default:"Esta acción no se puede deshacer." }}
     </div>
     <div>
-      {{ warning_text|default:"" }}
+      {{ warning_text|default:"Al eliminar este objeto, también se eliminarán todos los objetos relacionados." }}
     </div>
   </div>
 
@@ -53,10 +53,10 @@
       {% csrf_token %}
       <div class="d-flex justify-content-center gap-2 flex-wrap">
         <a href="{{ back_url }}" class="btn btn-outline-secondary py-2 px-4">
-          {{ cancel_label|default:"Cancelar" }}
+          {{ cancel_label|default:"No, Cancelar" }}
         </a>
         <button type="submit" class="btn btn-danger py-2 px-4">
-          {{ confirm_label|default:"Eliminar" }}
+          {{ confirm_label|default:"Sí, Eliminar" }}
         </button>
       </div>
     </form>
