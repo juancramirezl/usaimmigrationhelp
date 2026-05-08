@@ -1,8 +1,6 @@
 {% extends 'layouts/default_section.html' %}
 {% load crispy_forms_tags %}
 
-{% block section_width %}col-12 col-md-9 col-lg-7 col-xl-6{% endblock %}
-
 {% block section_content %}
   <form method="post">
     {% csrf_token %}
