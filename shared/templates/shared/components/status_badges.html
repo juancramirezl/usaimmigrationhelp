@@ -1,0 +1,43 @@
+{% if status_badge_section and status_badge_section.badges %}
+  <div class="my-5">
+
+    <div class="row align-items-center text-center text-md-start mb-4">
+
+      <div class="col-12 col-md-4">
+        <h2 class="fw-semibold fs-4 mb-2 mb-md-0">
+          {{ status_badge_section.title }}
+        </h2>
+      </div>
+
+      {% if status_badge_section.description %}
+        <div class="col-12 col-md-8">
+          <p class="text mb-0 mx-auto mx-md-0" style="max-width: 500px;">
+            {{ status_badge_section.description }}
+          </p>
+        </div>
+      {% endif %}
+
+    </div>
+
+    {% for row in status_badge_section.badge_rows %}
+      <div class="border rounded-4 p-4 bg-white mb-4">
+        <div class="row g-3">
+
+          {% for badge in row %}
+            <div class="{{ status_badge_section.column_class }}">
+              <div class="text-muted fw-semibold mb-1">
+                {{ badge.label }}
+              </div>
+
+              <span class="badge rounded-pill {{ badge.badge_class }} px-3 py-2">
+                {{ badge.value }}
+              </span>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+{% endif %}

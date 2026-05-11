@@ -1,0 +1,17 @@
+{% if additional_section %}
+  <div class="my-5">
+
+    {% if additional_section.type == "table" %}
+      {% include "shared/sections/table.html" %}
+
+    {% elif additional_section.type == "list" %}
+      {% include "shared/sections/list.html" %}
+
+    {% else %}
+      <p class="text-muted">
+        No se reconoce el tipo de sección adicional.
+      </p>
+    {% endif %}
+
+  </div>
+{% endif %}

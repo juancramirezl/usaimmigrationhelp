@@ -1,0 +1,13 @@
+{% if action_buttons %}
+  <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
+    {% for button in action_buttons %}
+      <a href="{{ button.url }}" class="{{ button.button_class }} shadow rounded-pill py-2 px-4">
+        {% if button.icon_class %}
+          <i class="{{ button.icon_class }} me-1"></i>
+        {% endif %}
+
+        {{ button.label }}
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}

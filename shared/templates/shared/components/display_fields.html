@@ -1,0 +1,43 @@
+{% if display_section and display_section.fields %}
+  <div class="my-5">
+
+    <div class="row align-items-center text-center text-md-start mb-4">
+
+      <div class="col-12 col-md-4">
+        <h2 class="fw-semibold fs-4 mb-2 mb-md-0">
+          {{ display_section.title }}
+        </h2>
+      </div>
+
+      {% if display_section.description %}
+        <div class="col-12 col-md-8">
+          <p class="text mb-0 mx-auto mx-md-0" style="max-width: 500px;">
+            {{ display_section.description }}
+          </p>
+        </div>
+      {% endif %}
+
+    </div>
+
+    {% for row in display_section.field_rows %}
+      <div class="border rounded-4 p-4 bg-white mb-4">
+        <div class="row">
+
+          {% for field in row %}
+            <div class="{{ display_section.column_class }} mb-3">
+              <div class="text-muted fw-semibold">
+                {{ field.label }}
+              </div>
+
+              <div class="fw-semibold">
+                {{ field.value|default:"-" }}
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+{% endif %}

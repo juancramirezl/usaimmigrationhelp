@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "localflavor",
     'crispy_forms',
     'crispy_bootstrap5',
+    'shared',
     'accounts',
     'question_bank',
     'forms_engine',
